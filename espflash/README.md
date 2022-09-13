@@ -36,6 +36,9 @@ OPTIONS:
         --bootloader <BOOTLOADER>
             Path to a binary (.bin) bootloader file
 
+        --dtr <DTR> [only available when built with the "raspberry" feature]
+            DTR pin to use for the internal UART hardware. Uses BCM numbering
+
         --erase-otadata
             Erase the OTADATA partition This is useful when using multiple OTA partitions and still
             wanting to be able to reflash via espflash
@@ -67,6 +70,9 @@ OPTIONS:
         --ram
             Load the application to RAM instead of Flash
 
+        --rts <RTS> [only available when built with the "raspberry" feature]
+            RTS pin to use for the internal UART hardware. Uses BCM numbering
+
     -s, --flash-size <SIZE>
             Flash size of the target [possible values: 256KB, 512KB, 1MB, 2MB, 4MB, 8MB, 16MB, 32MB,
             64MB, 128MB]
@@ -89,6 +95,12 @@ SUBCOMMANDS:
     serial-monitor        Open the serial monitor without flashing
     write-bin-to-flash    Writes a binary file to a specific address in the chip's flash
 ```
+
+## Compile-time features
+
+ - `raspberry`: enables configuring DTR and RTS GPIOs which are necessary to use a Raspberry Pi's
+   internal UART peripherals. This feature is optional (external USB <-> UART converters work
+   without it) and adds a dependency on [`rppal`](https://crates.io/crates/rppal).
 
 ## Configuration
 
